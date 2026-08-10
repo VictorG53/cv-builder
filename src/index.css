@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+html,
+body,
+#root {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    font-family: ui-monospace, "Space Mono", Consolas, monospace;
+}

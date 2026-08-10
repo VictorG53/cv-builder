@@ -1,0 +1,20 @@
+import { useEffect, useState } from "react";
+
+export function useTheme() {
+    const [dark, setDark] = useState(() => {
+        const stored = localStorage.getItem("theme");
+        return stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    });
+
+    useEffect(() => {
+        document.documentElement.classList.toggle("dark", dark);
+        localStorage.setItem("theme", dark ? "dark" : "light");
+
+        const favicon = document.querySelector<HTMLLinkElement>("link[rel~='icon']");
+        if (favicon) {
+            favicon.href = dark ? "/favicon-dark.svg" : "/favicon-light.svg";
+        }
+    }, [dark]);
+
+    return { dark, toggle: () => setDark((d) => !d) };
+}

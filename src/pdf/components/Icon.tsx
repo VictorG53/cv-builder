@@ -1,4 +1,3 @@
-import React from "react";
 import { Svg, Path, Circle, Rect } from "@react-pdf/renderer";
 
 type IconName = "user" | "wrench" | "layers" | "briefcase" | "graduation-cap" | "map-pin" | "mail" | "phone";

@@ -1,6 +1,70 @@
 import type { Lang } from "../types";
 
-export const ui = {
+export type Ui = {
+    headerReset: string;
+    confirmReset: string;
+    downloadGenerating: string;
+    downloadCta: string;
+    sections: {
+        general: string;
+        about: string;
+        diplomas: string;
+        experience: string;
+        skills: string;
+        languages: string;
+    };
+    fields: {
+        name: string;
+        namePlaceholder: string;
+        subtitle: string;
+        subtitlePlaceholder: string;
+        email: string;
+        emailPlaceholder: string;
+        phone: string;
+        phonePlaceholder: string;
+        aboutText: string;
+        aboutPlaceholder: string;
+        photo: string;
+    };
+    diplomas: {
+        title: string;
+        titlePlaceholder: string;
+        years: string;
+        yearsPlaceholder: string;
+        school: string;
+        schoolPlaceholder: string;
+        add: string;
+    };
+    experience: {
+        company: string;
+        companyPlaceholder: string;
+        city: string;
+        cityPlaceholder: string;
+        role: string;
+        rolePlaceholder: string;
+        period: string;
+        periodPlaceholder: string;
+        missions: string;
+        missionPlaceholder: string;
+        addMission: string;
+        add: string;
+    };
+    skills: {
+        hard: string;
+        hardPlaceholder: string;
+        soft: string;
+        softPlaceholder: string;
+    };
+    languages: {
+        name: string;
+        namePlaceholder: string;
+        level: string;
+        levelPlaceholder: string;
+        add: string;
+    };
+};
+
+export const ui: Record<Lang, Ui> = {
     fr: {
         headerReset: "Réinitialiser",
         confirmReset: "Réinitialiser toutes les données du CV ?",
@@ -130,6 +194,4 @@ export const ui = {
             add: "Add a language",
         },
     },
-} as const satisfies Record<Lang, unknown>;
-
-export type Ui = typeof ui.fr;
+};

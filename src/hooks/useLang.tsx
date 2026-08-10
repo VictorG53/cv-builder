@@ -1,11 +1,11 @@
 import { createContext, useContext, type ReactNode } from "react";
 import { useLocalStorage } from "./useLocalStorage";
-import { ui } from "../i18n/ui";
+import { ui, type Ui } from "../i18n/ui";
 import type { Lang } from "../types";
 
 type LangContextValue = {
     lang: Lang;
-    t: typeof ui.fr;
+    t: Ui;
     toggle: () => void;
 };
 

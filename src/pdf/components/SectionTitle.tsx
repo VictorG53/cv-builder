@@ -1,4 +1,3 @@
-import React from "react";
 import { View, Text } from "@react-pdf/renderer";
 import { s } from "../styles";
 import { Icon } from "./Icon";

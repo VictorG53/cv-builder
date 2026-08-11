@@ -14,8 +14,8 @@ export const colors = {
 export const s = StyleSheet.create({
     page: {
         backgroundColor: colors.white,
-        paddingTop: 30,
-        paddingBottom: 30,
+        paddingTop: 24,
+        paddingBottom: 24,
         paddingHorizontal: 48,
         fontFamily: "SpaceMono",
         color: colors.gray900,
@@ -26,7 +26,7 @@ export const s = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         gap: 16,
-        marginBottom: 20,
+        marginBottom: 16,
     },
     headerPhotoWrapper: {
         width: 85,
@@ -74,13 +74,13 @@ export const s = StyleSheet.create({
 
     // Section
     section: {
-        marginBottom: 12,
+        marginBottom: 9,
     },
     sectionHeader: {
         flexDirection: "row",
         alignItems: "center",
         gap: 6,
-        marginBottom: 8,
+        marginBottom: 6,
     },
     sectionIconBox: {
         backgroundColor: colors.gray100,

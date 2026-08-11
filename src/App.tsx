@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { PdfFrame } from "./components/PdfFrame";
 import { AlertTriangle, CheckCircle2, ChevronDown, ChevronUp, Download, RotateCcw, XCircle } from "lucide-react";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useTheme } from "./hooks/useTheme";
@@ -143,7 +144,7 @@ function App() {
 
             <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
                 {/* Form */}
-                <div className="h-full p-4 sm:p-6 space-y-8 overflow-y-auto [scrollbar-gutter:stable]">
+                <div className="h-full p-4 sm:p-6 pt-8 sm:pt-8 pb-20 lg:pb-6 space-y-8 overflow-y-auto [scrollbar-gutter:stable]">
                     <Section title={t.sections.general} valid={isGeneralInfoValid(data)}>
                         <div className="flex flex-col sm:flex-row gap-4">
                             <PhotoUpload
@@ -230,9 +231,7 @@ function App() {
 
                 {/* Preview */}
                 <div className="hidden lg:block relative h-full bg-gray-100 dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700">
-                    <PDFViewer width="100%" height="100%" showToolbar={false}>
-                        {previewDocument}
-                    </PDFViewer>
+                    <PdfFrame document={previewDocument} scale={0.85} />
                     {isOverflowing && (
                         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-start gap-2 rounded-xl bg-amber-50 dark:bg-amber-900/90 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-300 text-xs px-3 py-2 shadow-lg max-w-md">
                             <AlertTriangle size={13} className="shrink-0 mt-0.5" />
@@ -274,9 +273,7 @@ function App() {
                     {t.previewCta}
                 </button>
                 <div className="relative flex-1">
-                    <PDFViewer width="100%" height="100%" showToolbar={false}>
-                        {previewDocument}
-                    </PDFViewer>
+                    <PdfFrame document={previewDocument} />
                     {isOverflowing && (
                         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-start gap-2 rounded-xl bg-amber-50 dark:bg-amber-900/90 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-300 text-[11px] px-3 py-2 shadow-lg w-[90vw]">
                             <AlertTriangle size={13} className="shrink-0 mt-0.5" />

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import type { ReactElement } from "react";
 import { usePDF, type DocumentProps } from "@react-pdf/renderer";
 
@@ -13,7 +14,13 @@ export function PdfFrame({
     document: ReactElement<DocumentProps>;
     scale?: number;
 }) {
-    const [instance] = usePDF({ document });
+    const [instance, updateInstance] = usePDF({ document });
+
+    // usePDF only pushes the initial `document` on mount; subsequent prop
+    // changes (like this component re-rendering with new CV data) must be
+    // pushed through manually, same as react-pdf's own PDFViewer does.
+    useEffect(() => updateInstance(document), [document, updateInstance]);
+
     const src = instance.url ? `${instance.url}#toolbar=0` : undefined;
 
     return (
@@ -22,8 +29,6 @@ export function PdfFrame({
                 width: "100%",
                 height: "100%",
                 overflow: "hidden",
-                boxSizing: "border-box",
-                padding: 16,
             }}
         >
             <iframe

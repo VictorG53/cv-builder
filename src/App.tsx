@@ -230,7 +230,7 @@ function App() {
                 </div>
 
                 {/* Preview */}
-                <div className="hidden lg:block relative h-full bg-gray-100 dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700">
+                <div className="hidden lg:block relative h-full min-h-0 bg-gray-100 dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700">
                     <PdfFrame document={previewDocument} scale={0.85} />
                     {isOverflowing && (
                         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-start gap-2 rounded-xl bg-amber-50 dark:bg-amber-900/90 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-300 text-xs px-3 py-2 shadow-lg max-w-md">
@@ -272,7 +272,7 @@ function App() {
                     />
                     {t.previewCta}
                 </button>
-                <div className="relative flex-1">
+                <div className="relative flex-1 min-h-0">
                     <PdfFrame document={previewDocument} />
                     {isOverflowing && (
                         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-start gap-2 rounded-xl bg-amber-50 dark:bg-amber-900/90 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-300 text-[11px] px-3 py-2 shadow-lg w-[90vw]">

@@ -9,6 +9,16 @@ body,
     height: 100%;
 }
 
+html,
+body {
+    background-color: white;
+}
+
+html.dark,
+html.dark body {
+    background-color: #111827;
+}
+
 body {
     font-family: ui-monospace, "Space Mono", Consolas, monospace;
 }

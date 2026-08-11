@@ -5,6 +5,7 @@ export type Ui = {
     confirmReset: string;
     downloadGenerating: string;
     downloadCta: string;
+    downloadCtaShort: string;
     sections: {
         general: string;
         about: string;
@@ -70,6 +71,7 @@ export const ui: Record<Lang, Ui> = {
         confirmReset: "Réinitialiser toutes les données du CV ?",
         downloadGenerating: "Génération...",
         downloadCta: "Télécharger le PDF",
+        downloadCtaShort: "PDF",
         sections: {
             general: "Informations générales",
             about: "À propos",
@@ -135,6 +137,7 @@ export const ui: Record<Lang, Ui> = {
         confirmReset: "Reset all CV data?",
         downloadGenerating: "Generating...",
         downloadCta: "Download PDF",
+        downloadCtaShort: "PDF",
         sections: {
             general: "General information",
             about: "About",

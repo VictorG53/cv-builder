@@ -48,7 +48,7 @@ export function PhotoUpload({ photo, onChange }: Props) {
                         const file = e.dataTransfer.files?.[0];
                         if (file) handleFile(file);
                     }}
-                    className={`relative w-48 h-48 rounded border cursor-pointer overflow-hidden flex items-center justify-center text-gray-400 transition-colors ${
+                    className={`relative w-32 h-32 sm:w-48 sm:h-48 rounded border cursor-pointer overflow-hidden flex items-center justify-center text-gray-400 transition-colors ${
                         dragOver
                             ? "border-gray-500 dark:border-gray-300 bg-gray-100 dark:bg-gray-700"
                             : "border-dashed border-gray-300 dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-400"

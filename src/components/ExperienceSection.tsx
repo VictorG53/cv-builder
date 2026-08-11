@@ -56,7 +56,7 @@ export function ExperienceSection({ experience, onChange }: Props) {
                     >
                         <X size={14} />
                     </button>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <Field
                             label={t.experience.company}
                             value={e.company}
@@ -70,7 +70,7 @@ export function ExperienceSection({ experience, onChange }: Props) {
                             placeholder={t.experience.cityPlaceholder}
                         />
                     </div>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <Field
                             label={t.experience.role}
                             value={e.role}

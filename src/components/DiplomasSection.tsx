@@ -40,7 +40,7 @@ export function DiplomasSection({ diplomas, onChange }: Props) {
                         onChange={(v) => update(i, { title: v })}
                         placeholder={t.diplomas.titlePlaceholder}
                     />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <Field
                             label={t.diplomas.years}
                             value={d.years}

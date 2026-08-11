@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
-import { CheckCircle2, ChevronDown, Download, Eye, RotateCcw, X, XCircle } from "lucide-react";
+import { AlertTriangle, CheckCircle2, ChevronDown, ChevronUp, Download, RotateCcw, XCircle } from "lucide-react";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useTheme } from "./hooks/useTheme";
 import { useLang } from "./hooks/useLang";
+import { usePageCount } from "./hooks/usePageCount";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { LanguageToggle } from "./components/LanguageToggle";
 import { Field, TextAreaField } from "./components/Field";
@@ -84,6 +85,8 @@ function App() {
         () => <CVDocument data={previewData} lang={lang} />,
         [previewData, lang]
     );
+    const pageCount = usePageCount(previewDocument);
+    const isOverflowing = pageCount !== null && pageCount > 1;
 
     function patch(update: Partial<CVData>) {
         setData({ ...data, ...update });
@@ -226,43 +229,62 @@ function App() {
                 </div>
 
                 {/* Preview */}
-                <div className="hidden lg:block h-full bg-gray-100 dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700">
+                <div className="hidden lg:block relative h-full bg-gray-100 dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700">
                     <PDFViewer width="100%" height="100%" showToolbar={false}>
                         {previewDocument}
                     </PDFViewer>
+                    {isOverflowing && (
+                        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-start gap-2 rounded-xl bg-amber-50 dark:bg-amber-900/90 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-300 text-xs px-3 py-2 shadow-lg max-w-md">
+                            <AlertTriangle size={13} className="shrink-0 mt-0.5" />
+                            <span>{t.pageOverflowWarning(pageCount)}</span>
+                        </div>
+                    )}
                 </div>
             </div>
 
-            {/* Mobile preview trigger */}
+            {/* Mobile preview bottom bar / sheet */}
             <button
                 type="button"
                 onClick={() => setShowMobilePreview(true)}
-                className="lg:hidden fixed bottom-5 right-5 flex items-center justify-center h-14 w-14 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-lg cursor-pointer"
-                title={t.downloadCta}
+                className={`lg:hidden fixed bottom-0 inset-x-0 z-40 flex items-center justify-center gap-2 py-3 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm font-bold cursor-pointer transition-transform duration-300 ease-in-out ${
+                    showMobilePreview ? "translate-y-full" : "translate-y-0"
+                }`}
             >
-                <Eye size={22} />
+                <ChevronUp size={16} />
+                {t.previewCta}
+                {isOverflowing && (
+                    <span className="h-2 w-2 rounded-full bg-amber-500" />
+                )}
             </button>
 
-            {/* Mobile preview overlay */}
-            {showMobilePreview && (
-                <div className="lg:hidden fixed inset-0 z-50 flex flex-col bg-gray-100 dark:bg-gray-800">
-                    <div className="shrink-0 flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-                        <span className="text-sm font-bold">{t.downloadCta}</span>
-                        <button
-                            type="button"
-                            onClick={() => setShowMobilePreview(false)}
-                            className="flex items-center justify-center h-9 w-9 rounded border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 cursor-pointer"
-                        >
-                            <X size={16} />
-                        </button>
-                    </div>
-                    <div className="flex-1">
-                        <PDFViewer width="100%" height="100%" showToolbar={false}>
-                            {previewDocument}
-                        </PDFViewer>
-                    </div>
+            <div
+                className={`lg:hidden fixed inset-0 z-50 flex flex-col bg-gray-100 dark:bg-gray-800 transition-transform duration-300 ease-in-out ${
+                    showMobilePreview ? "translate-y-0" : "translate-y-full"
+                }`}
+            >
+                <button
+                    type="button"
+                    onClick={() => setShowMobilePreview(false)}
+                    className="shrink-0 flex items-center justify-center gap-2 py-3 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm font-bold cursor-pointer"
+                >
+                    <ChevronDown
+                        size={16}
+                        className={`transition-transform duration-300 ${showMobilePreview ? "" : "rotate-180"}`}
+                    />
+                    {t.previewCta}
+                </button>
+                <div className="relative flex-1">
+                    <PDFViewer width="100%" height="100%" showToolbar={false}>
+                        {previewDocument}
+                    </PDFViewer>
+                    {isOverflowing && (
+                        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-start gap-2 rounded-xl bg-amber-50 dark:bg-amber-900/90 border border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-300 text-[11px] px-3 py-2 shadow-lg w-[90vw]">
+                            <AlertTriangle size={13} className="shrink-0 mt-0.5" />
+                            <span>{t.pageOverflowWarning(pageCount)}</span>
+                        </div>
+                    )}
                 </div>
-            )}
+            </div>
         </div>
     );
 }

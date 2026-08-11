@@ -95,6 +95,7 @@ export const s = StyleSheet.create({
     sectionTitle: {
         fontSize: 11,
         fontWeight: "bold",
+        paddingLeft: 1,
     },
     sectionBody: {
         marginLeft: 24,

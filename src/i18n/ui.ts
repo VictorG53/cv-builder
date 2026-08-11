@@ -6,6 +6,8 @@ export type Ui = {
     downloadGenerating: string;
     downloadCta: string;
     downloadCtaShort: string;
+    pageOverflowWarning: (pages: number) => string;
+    previewCta: string;
     sections: {
         general: string;
         about: string;
@@ -72,6 +74,9 @@ export const ui: Record<Lang, Ui> = {
         downloadGenerating: "Génération...",
         downloadCta: "Télécharger le PDF",
         downloadCtaShort: "PDF",
+        pageOverflowWarning: (pages) =>
+            `Votre CV dépasse une page (${pages} pages). Réduisez le contenu pour tenir sur une seule page.`,
+        previewCta: "Aperçu du CV",
         sections: {
             general: "Informations générales",
             about: "À propos",
@@ -138,6 +143,9 @@ export const ui: Record<Lang, Ui> = {
         downloadGenerating: "Generating...",
         downloadCta: "Download PDF",
         downloadCtaShort: "PDF",
+        pageOverflowWarning: (pages) =>
+            `Your CV exceeds one page (${pages} pages). Trim the content to fit on a single page.`,
+        previewCta: "Preview your CV",
         sections: {
             general: "General information",
             about: "About",

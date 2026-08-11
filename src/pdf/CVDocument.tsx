@@ -143,7 +143,7 @@ export function CVDocument({ data, lang }: { data: CVData; lang: Lang }) {
                 )}
 
                 {/* Skills + Languages */}
-                <View style={s.twoCol}>
+                <View style={s.twoCol} wrap={false}>
                     {(data.hardSkills.length > 0 ||
                         data.softSkills.length > 0) && (
                         <View style={s.col}>

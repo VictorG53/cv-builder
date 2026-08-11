@@ -114,7 +114,7 @@ export function ExperienceSection({ experience, onChange }: Props) {
                         <button
                             type="button"
                             onClick={() => addMission(i)}
-                            className="flex items-center gap-1 rounded border border-gray-300 dark:border-gray-600 px-3 py-1.5 text-sm font-bold text-gray-600 dark:text-gray-300 hover:border-gray-500 hover:text-gray-900 dark:hover:border-gray-400 dark:hover:text-white"
+                            className="flex items-center gap-1 rounded border border-gray-300 dark:border-gray-600 px-3 py-1.5 text-sm font-bold text-gray-600 dark:text-gray-300 hover:border-gray-500 hover:text-gray-900 dark:hover:border-gray-400 dark:hover:text-white cursor-pointer"
                         >
                             <Plus size={14} /> {t.experience.addMission}
                         </button>
@@ -124,7 +124,7 @@ export function ExperienceSection({ experience, onChange }: Props) {
             <button
                 type="button"
                 onClick={add}
-                className="flex items-center gap-1 rounded border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm font-bold text-gray-600 dark:text-gray-300 hover:border-gray-500 hover:text-gray-900 dark:hover:border-gray-400 dark:hover:text-white"
+                className="flex items-center gap-1 rounded border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm font-bold text-gray-600 dark:text-gray-300 hover:border-gray-500 hover:text-gray-900 dark:hover:border-gray-400 dark:hover:text-white cursor-pointer"
             >
                 <Plus size={16} /> {t.experience.add}
             </button>
